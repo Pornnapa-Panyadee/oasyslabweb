@@ -1,0 +1,11 @@
+@import './responsive.scss';
+@mixin container() {
+    width: 80%;
+    margin: auto;
+    @include respond-to($tablet-portrait and $tablet-landscape) {
+        width: 90%;
+    }
+    @include respond-to($mobile) {
+        width: 95%;
+    }
+}

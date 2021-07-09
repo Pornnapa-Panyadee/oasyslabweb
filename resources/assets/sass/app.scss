@@ -1,0 +1,138 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+.nav-item{
+  .dropdown-toggle{
+    .material i{
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .material-text{
+      vertical-align: super;
+    }
+  } 
+}
+
+#images-list{
+  max-height: 520px;
+  overflow: auto;
+}
+.backend{
+  .image{
+    .image-wrapper{
+      border:1px solid #d4d4d4;
+    }
+  }
+  .member{
+    .image-preview-temp{
+      height: 300px;
+      width:100%;
+      border:1px solid #d4d4d4;
+    }
+    .tag{
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      background-color: #d4d4d4;
+      padding: .45rem 0.5rem;
+      border-radius: 5px;
+      color: #000;
+      margin-right: .5rem;
+      span{
+        color:#fff;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        margin-left: .5rem;
+        cursor: pointer;
+      }
+    }
+  }
+  .banner{
+    .image-preview-temp{
+      height: 200px;
+      width:100%;
+      border:1px solid #d4d4d4;
+    }
+    .banner-wrapper{
+      border-bottom:1px solid #d4d4d4;
+    }
+  }
+  .icon-btn{
+    padding: 0 7px;
+    i{
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+}
+
+.frontend{
+  .navbar{
+    background: linear-gradient(to bottom,rgba(0,0,0,0.7),rgba(0,0,0,0));
+    .navbar-brand{
+      color:$white;
+      font-weight: bolder;
+    }
+  }
+  .banner-nav{
+    margin-top:-5rem;
+    .slick-list{
+      // padding:0!important;
+    }
+    .slick-next{
+      right: -6rem;
+      width: 4rem;
+      height: 4rem;
+    }
+    .slick-prev{
+      left: -6rem;
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+  .about{
+    .title{
+      .text-wrapper{
+        width: 90%;
+        background-color: $black;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        h1{
+          font-size: 9rem;
+          font-weight: bolder;
+          color: #fff;
+        }
+      }
+      .box-wrapper{
+        width:10%;
+        .box{
+          background-color: $blue;
+          height: 70%;
+          width: 100%;
+          bottom: 1.5rem;
+          position: absolute;
+        }
+      }
+    }
+    .text{
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      margin-top: -1rem;
+      width: 85%;
+      background-color: $yellow;
+      // position: absolute;
+      p{
+        padding:3rem 5rem 2rem 10rem;
+      }
+    }
+  }
+}
+

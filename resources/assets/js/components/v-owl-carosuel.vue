@@ -1,0 +1,156 @@
+<template>
+    <div>
+        <span :id="prevHandler">
+            <slot name="prev"></slot>
+        </span>
+        <div :id="elementHandle" :class="['owl-carousel', 'owl-theme']">
+            <slot></slot>
+        </div>
+        <span :id="nextHandler">
+            <slot name="next"></slot>
+        </span>
+    </div>
+</template>
+<script>
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
+import 'owl.carousel';
+export default {
+    name: 'VOwlCarousel',
+    data: function(){
+    return {
+        prevHandler: 'carousel_prev_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        elementHandle: 'carousel_' +  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        nextHandler: 'carousel_next_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+        }
+    },
+    props: {
+        items : {
+            default: 3
+        },
+        margin : {
+            default: 0
+        },
+        loop : {
+            default: false
+        },
+        center : {
+            default: false
+        },
+        nav : {
+            default: true
+        },
+        autoplay : {
+            default: false
+        },
+        autoplaySpeed : {
+            default: false
+        },
+        rewind : {
+            default: true
+        },
+        mouseDrag : {
+            default: true
+        },
+        touchDrag: {
+            default: true
+        },
+        pullDrag: {
+            default: true
+        },
+        freeDrag: {
+            default: false
+        },
+        stagePadding: {
+            default: 0
+        },
+        autoWidth: {
+            default: false
+        },
+        autoHeight: {
+            default: false
+        },
+        dots: {
+            default: true
+        },
+        autoplayTimeout: {
+            default: 5000
+        },
+        autoplayHoverPause: {
+            default: false
+        },
+        responsive: {
+            default: Object
+        },
+        onChangePosition: {
+            default: Function
+        },
+        onClickItem: {
+            default: Function
+        }
+    },
+    mounted() {
+        this.renderData()
+    },
+    updated() {
+        if (!this.alreadyReRender) {
+            this.renderData()
+            this.alreadyReRender = true
+        }
+    },
+    methods: {
+        renderData() {
+            const self = this
+            const owl = $('#' + this.elementHandle).owlCarousel({
+                items        : this.items,
+                margin       : this.margin,
+                loop         : this.loop,
+                center       : this.center,
+                nav          : this.nav,
+                autoplay     : this.autoplay,
+                autoplaySpeed: this.autoplaySpeed,
+                rewind       : this.rewind,
+                mouseDrag    : this.mouseDrag,
+                touchDrag    : this.touchDrag,
+                pullDrag     : this.pullDrag,
+                freeDrag     : this.freeDrag,
+                stagePadding     : this.stagePadding,
+                autoWidth     : this.autoWidth,
+                autoHeight     : this.autoHeight,
+                dots     : this.dots,
+                autoplayTimeout     : this.autoplayTimeout,
+                autoplayHoverPause     : this.autoplayHoverPause,
+                responsive     : this.responsive
+            })
+            this.owl = owl
+
+            $('#' + this.prevHandler).click(function() {
+                self.prev()
+            })
+            $('#' + this.nextHandler).click(function() {
+                self.next()
+            })
+            
+            $(document).on('click', '.owl-item', function () {
+                self.onClickItem(this)
+            })
+            
+            $('#' + this.elementHandle).on('change.owl.carousel', function(event) {
+                const { property } = event
+                if (property.name === 'position') {
+                    self.onChangePosition(property.value)
+                }
+            })
+        },
+        prev() {
+            this.owl.trigger('prev.owl.carousel')
+        },
+        next() {
+            this.owl.trigger('next.owl.carousel')
+        },
+        goTo(position) {
+            this.owl.trigger('to.owl.carousel', [position])
+        }
+    }
+}
+</script>
